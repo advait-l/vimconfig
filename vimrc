@@ -37,9 +37,11 @@ set hlsearch    "highlight matches
 nnoremap B ^
 nnoremap E $
 
-"$/^ doesn't do anything
-nnoremap $ <nop>
-nnoremap ^ <nop>
+"Exit insert mode
+:imap ;; <Esc>
+
+"Enter insert mode
+:nmap ;;  i
 
 "Autobracket
 :inoremap ( ()<Esc>i
