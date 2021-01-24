@@ -11,6 +11,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'junegunn/goyo.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'mattn/emmet-vim'
+Plugin 'vimwiki/vimwiki'
+Plugin 'vim/killersheep'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,6 +41,7 @@ let g:indentLine_char = '|'
 "gruvbox.vim  darkblue.vim  delek.vim    elflord.vim  industry.vim  morning.vim  pablo.vim   README.txt     shine.vim  torte.vim
 
 colorscheme gruvbox 
+set bg=dark
 syntax enable
 
 "Spaces and Tabs
@@ -104,4 +109,6 @@ augroup END
 "Move among tabs
 map <C-Right> gt
 map <C-Left> gT
+
+
 
