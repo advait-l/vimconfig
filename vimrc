@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+set encoding=UTF-8
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -15,6 +16,13 @@ Plugin 'morhetz/gruvbox'
 Plugin 'mattn/emmet-vim'
 Plugin 'vimwiki/vimwiki'
 Plugin 'vim/killersheep'
+Plugin 'nikvdp/ejs-syntax'
+Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'sonph/onehalf', { 'rtp': 'vim' }
+Plugin 'preservim/nerdtree'
+Plugin 'preservim/nerdcommenter'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'ryanoasis/vim-devicons'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -32,6 +40,18 @@ filetype plugin on
 "Indentline plugin customizations"
 let g:indentLine_char = '|'
 
+"NERDTree customizations"
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-b> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+autocmd VimEnter * NERDTree | wincmd p " Start NERDTree and put the cursor back in the other window.
+autocmd BufWinEnter * silent NERDTreeMirror " Open the existing NERDTree on each new tab.
+
+"NERDCommenter customization
+nnoremap cc :call NERDComment(0,"toggle")<CR>
+vnoremap cc :call NERDComment(0,"toggle")<CR>
+nnoremap cs :call NERDComment(0,"sexy")<CR>
+vnoremap cs :call NERDComment(0,"sexy")<CR>
 
 
 "--------------------------------------------------------NON-PLUGIN STUFF------------------------------------------------------------"
@@ -40,8 +60,10 @@ let g:indentLine_char = '|'
 "blue.vim      default.vim  desert.vim   evening.vim   koehler.vim  murphy.vim  peachpuff.vim  ron.vim    slate.vim  zellner.vim
 "gruvbox.vim  darkblue.vim  delek.vim    elflord.vim  industry.vim  morning.vim  pablo.vim   README.txt     shine.vim  torte.vim
 
-colorscheme gruvbox 
-set bg=dark
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+"colorscheme dracula
+"set bg=dark
 syntax enable
 
 "Spaces and Tabs
@@ -94,21 +116,9 @@ nnoremap E $
 
 set mouse=a
 
-"File Explorer
-let g:netrw_liststyle = 3   "tree list view in netrw
-let g:netrw_banner = 0  "remove directory banner
-let g:netrw_browse_split = 4    "opens files in new horizontal split, 2 - vertical, 3 - new tab, 4 - previous window
-
-let g:netrw_winsize = 13    "25% of page width
-let g:netrw_altv = 1
-augroup ProjectDrawer
-    autocmd!
-    autocmd VimEnter * :Vexplore
-augroup END
-
 "Move among tabs
 map <C-Right> gt
 map <C-Left> gT
 
-
-
+" .ejs file syntax highlighting
+au BufNewFile,BufRead *.ejs set filetype=html
